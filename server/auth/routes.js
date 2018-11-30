@@ -15,6 +15,7 @@ router.post('/login', (req, res, next) => {
 })
 
 router.post('/register', (req, res, next) => {
+  // @ts-ignore
   let hash = Users.hashPassword(req.body.password)
   Users.create({ username: req.body.username, hash })
     .then(user => {

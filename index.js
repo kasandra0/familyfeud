@@ -9,6 +9,7 @@ server.use(bodyParser.urlencoded({ extended: true }))
 server.use(express.static(__dirname + '/public'))
 
 let auth = require('./server/auth/routes')
+let survey = require('./server/routes/survey')
 server.use(auth.session)
 server.use('/account', auth.router)
 
@@ -22,6 +23,9 @@ server.use("*", (req, res, next) => {
     next()
   }
 })
+
+// @ts-ignore
+server.use('/api/survey', survey)
 
 server.use("*", (error, req, res, next) => {
   res.status(error.status || 400).send({ message: error.message })
