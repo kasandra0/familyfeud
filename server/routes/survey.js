@@ -13,10 +13,14 @@ router.get('/', (req, res, next) => {
 //get one survey and comments
 router.get('/:id', (req, res, next) => {
   Survey.findOne(req.params.id)
-  Comments.find({ surveyId: req.params.id })
-    .then(survey => res.send(survey))
-    .then(comments => res.send(comments))
-    .catch(next)
+    .then(survey => {
+      Comments.find({ surveyId: req.params.id })
+        .then(comments => {
+          survey.comments = comments
+          res.send(survey)
+        })
+        .catch(next)
+    })
 })
 
 //delete a survey
@@ -29,7 +33,15 @@ router.delete('/:id', (req, res, next) => {
 //create a survey
 router.post('/', (req, res, next) => {
   Survey.create(req.body)
-    .then(survey => res.send(survey))
+    .then(survey => {
+      survey.addAnswers(req.body.answers)
+      survey.save(err => {
+        if (err) {
+          return next(err)
+        }
+        res.send(survey)
+      })
+    })
     .catch(next)
 })
 
