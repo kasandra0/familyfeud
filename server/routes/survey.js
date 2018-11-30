@@ -39,3 +39,5 @@ router.put('/:id', (req, res, next) => {
     .then(survey => res.send(survey))
     .catch(next)
 })
+
+module.exports = router

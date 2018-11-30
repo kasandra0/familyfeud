@@ -28,3 +28,5 @@ router.put('/:id/down', (req, res, next) => {
     .then(Comments => res.send(Comments))
     .catch(next)
 })
+
+module.exports = router
