@@ -3,7 +3,7 @@ let _currentSurvey = {}
 let _ss = new SurveyService()
 export default class SurveyController {
   constructor() {
-
+    drawSurveyForm()
   }
   getAllSurveys() {
     _ss.getAllSurveys(drawAllSurveys)
@@ -15,12 +15,13 @@ export default class SurveyController {
     let formData = {
       question: form.question.value,
       answers: [
-        { answer: form.a1.value, count: 0 },
-        { answer: '', count: 0 },
-        { answer: '', count: 0 },
-        { answer: '', count: 0 },
-        { answer: '', count: 0 },
-      ]
+        { answer: form.a1.value, count: form.n1.value },
+        { answer: form.a2.value, count: form.n2.value },
+        { answer: form.a3.value, count: form.n3.value },
+        { answer: form.a4.value, count: form.n4.value },
+        { answer: form.a5.value, count: form.n5.value },
+      ],
+      img: form.imgurl.value
     }
   }
 
@@ -67,6 +68,10 @@ function drawSurveyForm() {
               <input type="text" name="a5" placeholder="answer">
               <input type="number" name="n5" placeholder="percent">
             </div>
+          </div>
+          <div class="form-group">
+            <label for="imgurl">image link: </label>
+            <input type="text" name="imgurl">
           </div>
           <button type="submit">Submit</button>
         </form>
