@@ -1,10 +1,12 @@
 import AuthService from "./auth-service.js";
 
-let _as = new AuthService()
+let _as = {}
+let _user = {}
 
 export default class AuthController {
-  constructor() {
-    drawLoginForm()
+  constructor(auth) {
+    _as = auth
+    _as.authenticate(drawLogoutForm, drawLoginForm)
   }
   login(event) {
     event.preventDefault()
@@ -43,7 +45,6 @@ export default class AuthController {
 }
 // PRIVATE
 function drawLoginForm() {
-  // add on submit method
   let template = `
   <div class="col-md-4 offset-8">
         <form onsubmit="app.controllers.authController.login(event)">
@@ -59,7 +60,9 @@ function drawLoginForm() {
   document.getElementById("auth-frame").innerHTML = template
 }
 function drawLogoutForm() {
+  _user = _as.user
   let template = `
+      <p>Current User: ${_user.username} </p>
       <div class="col-md-4 offset-8">
         <button onclick="app.controllers.authController.logout()">Logout</button>
       </div>

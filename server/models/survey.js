@@ -4,12 +4,12 @@ let ObjectId = Schema.Types.ObjectId
 let name = 'Survey'
 
 let answerSchema = new Schema({
-  answer: { type: String, required: true },
+  answer: { type: String, required: true, maxlength: 10 },
   count: { type: Number, default: 0 }
 })
 
 let schema = new Schema({
-  question: { type: String, required: true },
+  question: { type: String, required: true, maxlength: 50 },
   answers: [answerSchema],
   userId: { type: ObjectId, ref: 'uid', required: true },
   img: { type: String },

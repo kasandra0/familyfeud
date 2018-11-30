@@ -15,8 +15,6 @@ checkAnswer(answers, answer){
     if (word == answers) {
       return true
     }
-    else {
-      return false
-    }
   })
+  return false
 }
