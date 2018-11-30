@@ -14,8 +14,8 @@ router.get('/', (req, res, next) => {
 router.get('/:id', (req, res, next) => {
   Survey.findOne(req.params.id)
   Comments.find({ surveyId: req.params.id })
-    .then(comments => res.send(comments))
     .then(survey => res.send(survey))
+    .then(comments => res.send(comments))
     .catch(next)
 })
 
@@ -26,3 +26,16 @@ router.delete('/:id', (req, res, next) => {
     .catch(next)
 })
 
+//create a survey
+router.post('/', (req, res, next) => {
+  Survey.create(req.body)
+    .then(survey => res.send(survey))
+    .catch(next)
+})
+
+//someone answers correctly to a survey
+router.put('/:id', (req, res, next) => {
+  Survey.findByIdAndUpdate(req.params.id, req.body, { new: true })
+    .then(survey => res.send(survey))
+    .catch(next)
+})
