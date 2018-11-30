@@ -4,7 +4,6 @@ let bodyParser = require('body-parser')
 let server = express()
 require("./server/db/mlab-config")
 
-//lines 6 through 7 is middleware. 
 server.use(bodyParser.json())
 server.use(bodyParser.urlencoded({ extended: true }))
 server.use(express.static(__dirname + '/public'))
@@ -27,7 +26,6 @@ server.use("*", (req, res, next) => {
 server.use("*", (error, req, res, next) => {
   res.status(error.status || 400).send({ message: error.message })
 })
-//Don't change below
 server.listen(3000, () => {
   console.log("The server is running on port:", 3000)
 })

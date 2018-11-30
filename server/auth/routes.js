@@ -18,7 +18,7 @@ router.post('/register', (req, res, next) => {
   let hash = Users.hashPassword(req.body.password)
   Users.create({ username: req.body.username, hash })
     .then(user => {
-      delete.user._doc.hash
+      delete user._doc.hash
       req.session.uid = user._id
       res.send(user)
     })
