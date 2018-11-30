@@ -16,8 +16,10 @@ let schema = new Schema({
   comments: [{}]
 })
 
-schema.static.addAnswers = function (answers) {
-
+schema.method.addAnswers = function (answers) {
+  answers.forEach(answer => {
+    this.answers.push(answer)
+  });
 }
 
 
