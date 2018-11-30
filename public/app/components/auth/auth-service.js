@@ -1,3 +1,4 @@
+// @ts-ignore
 let _api = axios.create({
   baseURL: '/account',
   withCredentials: true,
