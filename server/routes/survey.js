@@ -40,4 +40,12 @@ router.put('/:id', (req, res, next) => {
     .catch(next)
 })
 
+//create a comment, uses the survey id as the url id parameter
+router.post('/:id/comment', (req, res, next) => {
+  Comments.create({ surveyId: req.params.id }, req.body)
+    .then(Comments => res.send(Comments))
+    .catch(next)
+})
+
+
 module.exports = router
