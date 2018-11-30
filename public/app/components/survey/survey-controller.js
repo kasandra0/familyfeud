@@ -19,10 +19,11 @@ export default class SurveyController {
         { answer: form.a2.value, count: form.n2.value },
         { answer: form.a3.value, count: form.n3.value },
         { answer: form.a4.value, count: form.n4.value },
-        { answer: form.a5.value, count: form.n5.value },
+        { answer: form.a5.value, count: form.n5.value }
       ],
       img: form.imgurl.value
     }
+    _ss.createSurvey(formData, this.getAllSurveys)
   }
 
 }
@@ -50,7 +51,7 @@ function drawSurveyForm() {
             <label for="answers">5 most common answers:</label>
             <div class="form-group">
               <input type="text" name="a1" placeholder="answer">
-              <input type="number" name="n1" placeholder="percent">
+              <input type="number" name="n1" placeholder="perc">
             </div>
             <div class="form-group">
               <input type="text" name="a2" placeholder="answer">
