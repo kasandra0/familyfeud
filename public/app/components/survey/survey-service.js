@@ -1,3 +1,4 @@
+// @ts-ignore
 let _surveyApi = axios.create({
   baseURL: '/api/surveys',
   withCredentials: true
@@ -14,6 +15,12 @@ export default class SurveyService {
       .then(res => {
         drawAll(res.data) // verify data format
       })
+      .catch(handleError)
+  }
+  //create survey
+  createSurvey(formData, callback) {
+    _surveyApi.post('', formData)
+      .then(callback)
       .catch(handleError)
   }
 }
