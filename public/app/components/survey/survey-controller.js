@@ -3,13 +3,26 @@ let _currentSurvey = {}
 let _ss = new SurveyService()
 export default class SurveyController {
   constructor() {
-    debugger
-    createSurvey()
+
   }
   getAllSurveys() {
     _ss.getAllSurveys(drawAllSurveys)
   }
   //create a survey
+  createSurvey(event) {
+    event.preventDefault();
+    let form = event.target
+    let formData = {
+      question: form.question.value,
+      answers: [
+        { answer: form.a1.value, count: 0 },
+        { answer: '', count: 0 },
+        { answer: '', count: 0 },
+        { answer: '', count: 0 },
+        { answer: '', count: 0 },
+      ]
+    }
+  }
 
 }
 function drawAllSurveys(surveys) {
@@ -22,7 +35,7 @@ function drawAllSurveys(surveys) {
   `
   document.getElementById('main-frame').innerHTML = template
 }
-function createSurvey() {
+function drawSurveyForm() {
   let template = `
         <div class="col-md-12">
         <h1>Create A Survey</h1>
@@ -35,26 +48,27 @@ function createSurvey() {
           <div class="form-group">
             <label for="answers">5 most common answers:</label>
             <div class="form-group">
-              <input type="text" name="a1">
-              <input type="number" name="n1">
+              <input type="text" name="a1" placeholder="answer">
+              <input type="number" name="n1" placeholder="percent">
             </div>
             <div class="form-group">
-              <input type="text" name="a2">
-              <input type="number" name="n2">
+              <input type="text" name="a2" placeholder="answer">
+              <input type="number" name="n2" placeholder="percent">
             </div>
             <div class="form-group">
-              <input type="text" name="a3">
-              <input type="number" name="n3">
+              <input type="text" name="a3" placeholder="answer">
+              <input type="number" name="n3" placeholder="percent">
             </div>
             <div class="form-group">
-              <input type="text" name="a4">
-              <input type="number" name="n4">
+              <input type="text" name="a4" placeholder="answer">
+              <input type="number" name="n4" placeholder="percent">
             </div>
             <div class="form-group">
-              <input type="text" name="a5">
-              <input type="number" name="n5">
+              <input type="text" name="a5" placeholder="answer">
+              <input type="number" name="n5" placeholder="percent">
             </div>
           </div>
+          <button type="submit">Submit</button>
         </form>
       </div>
   `
