@@ -1,9 +1,10 @@
 import SurveyService from "./survey-service.js";
 let _currentSurvey = {}
 let _ss = new SurveyService()
+let _as = {}
 export default class SurveyController {
-  constructor() {
-    drawSurveyForm()
+  constructor(auth) {
+    _as = auth
   }
   getAllSurveys() {
     _ss.getAllSurveys(drawAllSurveys)
