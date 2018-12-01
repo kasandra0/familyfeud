@@ -25,7 +25,8 @@ router.put('/:id/down', (req, res, next) => {
 
 //create a subcomment, uses the comment id as the url id parameter
 router.post('/:id/subcomment', (req, res, next) => {
-  Subcomment.create({ comId: req.params.id }, req.body)
+  req.body.commentId = req.params.id
+  Subcomment.create(req.body)
     .then(Subcomment => res.send(Subcomment))
     .catch(next)
 })

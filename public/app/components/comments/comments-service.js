@@ -2,6 +2,10 @@ let _commentApi = axios.create({
   baseURL: '/api/comments',
   withCredentials: true
 })
+let _subCommentApi = axios.create({
+  baseURL: '/api/subcomments',
+  withCredentials: true
+})
 
 
 let _as = {}
@@ -14,30 +18,25 @@ export default class CommentService {
   constructor(auth) {
     _as = auth
   }
-  makeSubcomment(formData, success) {
-    let commentId = formData.id
-    if (!formData) {
-      throw new Error("cOmMenT")
-    }
-    _commentApi.post(commentId + '/subcomment', formData)
-      .then(res => {
-        this.getComments(success)
-      })
-      .catch(handleError)
-  }
   deleteComment(id) {
     _commentApi.delete(id)
       .then(res => {
 
       })
   }
-  upvoteComment() {
-    _commentApi.
+  upvoteComment(commentId) {
+    _commentApi.put(commentId, upvotes)
   }
-  downvoteComment() {
-    _commentApi.
+  downvoteComment(commentId) {
+    _commentApi.put(commentId, downvotes)
   }
-  getComments(draw) {
-
+  getSubcomments(commentId, draw) {
+    let subcoms = []
+    _subCommentApi.get(commentId)
+      .then(res => subcoms = res.data)
+    draw(subcoms)
+  }
+  makeSubcomments(commentId, subComment) {
+    _commentApi.post(commentId + '/subcomment', subComment)
   }
 }
