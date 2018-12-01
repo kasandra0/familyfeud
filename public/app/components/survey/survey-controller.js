@@ -5,6 +5,7 @@ let _as = {}
 export default class SurveyController {
   constructor(auth) {
     _as = auth
+    this.getAllSurveys()
   }
   getAllSurveys() {
     _ss.getAllSurveys(drawAllSurveys)
@@ -13,6 +14,7 @@ export default class SurveyController {
   createSurvey(event) {
     event.preventDefault();
     let form = event.target
+
     let formData = {
       question: form.question.value,
       answers: [
@@ -24,22 +26,14 @@ export default class SurveyController {
       ],
       img: form.imgurl.value
     }
+    // --------
+    console.log('Question L:', form.question.length)
+    console.log(formData.answers.forEach(answer => console.log('A Length: ', answer.length)))
+    // -----------
     _ss.createSurvey(formData, this.getAllSurveys)
   }
-
-}
-function drawAllSurveys(surveys) {
-  let template = `<h2>Choose a survey! </h2>`
-  surveys.forEach(survey => {
-    template += survey.getCard()
-  })
-  template += `
-  <button onclick="">Create a new survey</button>
-  `
-  document.getElementById('main-frame').innerHTML = template
-}
-function drawSurveyForm() {
-  let template = `
+  drawSurveyForm() {
+    let template = `
         <div class="col-md-12">
         <h1>Create A Survey</h1>
       </div>
@@ -79,7 +73,21 @@ function drawSurveyForm() {
         </form>
       </div>
   `
+    document.getElementById('main-frame').innerHTML = template
+  }
 
+}
+function drawAllSurveys(surveys) {
+  let template = `<h2 class="col-12">Choose a survey! </h2>`
+  surveys.forEach(survey => {
+    template += survey.getCard()
+  })
+  template += `<div class="col-12">
+  <button onclick="app.controllers.surveyController.drawSurveyForm()">Create a new survey</button>
+  </div>
+  `
   document.getElementById('main-frame').innerHTML = template
+
+
 
 }

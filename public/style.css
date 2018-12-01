@@ -6,9 +6,59 @@
   border-radius: 20px;
   text-align: center;
   font-size: 50px;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .page {
   background-color: rgb(252, 252, 160); 
 }
+.blue {
+  background-color: blue;
+  animation: pulse 10s infinite;
+  height:50px
+}
+.red {
+  background-color:red;
+  animation: pulse 10s infinite;
+  height:50px
+}
+.yellow {
+  background-color:yellow;
+  animation: pulse 10s infinite;
+  height:50px
+}
+.green {
+  background-color:green;
+  animation: pulse 10s infinite;
+  height:50px
+}
+.purple {
+  background-color:purple;
+  animation: pulse 10s infinite;
+  height:50px
+}
+.pink {
+  background-color:pink;
+  animation:pulse 10s infinite;
+  height:50px
+}
+.boxes {
+  height: 100px;
+}
+@keyframes pulse {
+  0% {
+    color:blue;
+  }
+  33% {
+    color:pink;
+  }
+    60% {
+      color:yellow;
+    }
+    75% {
+      color: red;
+    }
+    100% {
+      color: green
+    }
+  }

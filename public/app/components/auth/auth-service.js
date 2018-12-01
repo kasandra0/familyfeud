@@ -27,7 +27,6 @@ export default class AuthService {
     _api.get('authenticate')
       .then(res => {
         _user = res.data
-        console.log(_user)
         drawOnSuccess()
       })
       .catch(err => {
