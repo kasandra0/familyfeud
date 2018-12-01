@@ -45,20 +45,23 @@
 .boxes {
   height: 100px;
 }
-@keyframes pulse {
+@keyframes blue {
   0% {
-    color:blue;
+    background-color:blue;
+  }
+  32% {
+    background-color: blue;
   }
   33% {
-    color:pink;
+    background-color:pink;
   }
     60% {
-      color:yellow;
+      background-color:yellow;
     }
     75% {
-      color: red;
+      background-color: red;
     }
     100% {
-      color: green
+      background-color: green
     }
   }
