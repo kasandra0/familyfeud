@@ -18,37 +18,59 @@
 }
 .blue {
   background-color: blue;
-  animation: blues 10s infinite;
-  height:50px
+  animation: blues 3s infinite;
+  height: 200px;
 }
 .red {
   background-color:red;
-  animation: reds 10s infinite;
-  height:50px
+  animation: reds 3s infinite;
+  height: 200px;
 }
 .yellow {
   background-color:yellow;
   animation: yellows 10s infinite;
-  height:50px
+  height: 200px
 }
 .green {
   background-color:green;
-  animation: greens 10s infinite;
-  height:50px
+  animation: greens 3s infinite;
+  height: 200px;
 }
 .purple {
   background-color:purple;
   animation: purples 10s infinite;
-  height:50px
+  height: 200px;
 }
 .pink {
   background-color:pink;
-  animation:pinks 10s infinite;
-  height:50px
+  animation:pinks 5s infinite;
+  height: 200px;
 }
-.boxes {
+.boxes1 {
   height: 200px;
   position: absolute;
+  width: 100%
+}
+.boxes2 {
+  height: 200px;
+  position: absolute;
+  width: 100%;
+  margin-top: 200px
+}
+.boxes3 {
+  height: 200px;
+  position: absolute;
+  width: 100%;
+  margin-top: 400px
+}
+.boxes4 {
+  height: 200px;
+  position: absolute;
+  width: 100%;
+  margin-top: 600px
+}
+.box {
+  width: 16.666666%;
 }
 @keyframes blues {
   0% {
@@ -58,16 +80,16 @@
     background-color: blue;
   }
   33% {
-    background-color:pink;
+    background-color:green;
   }
-    60% {
-      background-color: red;
+    66% {
+      background-color:green;
     }
-    75% {
+    67% {
       background-color: red;
     }
     100% {
-      background-color: blue;
+      background-color: red;
     }
   }
   @keyframes reds {
@@ -78,13 +100,13 @@
     background-color:red;
   }
   33% {
-    background-color:pink;
+    background-color:blue;
   }
-    60% {
-      background-color: pink;
-    }
-    75% {
+    66% {
       background-color:blue;
+    }
+    67% {
+      background-color: green;
     }
     100% {
       background-color: green
@@ -118,16 +140,16 @@
     background-color:green;
   }
   33% {
-    background-color:pink;
+    background-color:red;
   }
-    60% {
-      background-color:blue;
+    66% {
+      background-color:red;
     }
-    75% {
-      background-color: green;
+    67% {
+      background-color: blue;
     }
     100% {
-      background-color: green
+      background-color: blue
     }
   }
 
