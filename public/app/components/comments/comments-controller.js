@@ -27,7 +27,6 @@ export default class CommentController {
     document.getElementById('reply-' + commentId).innerHTML = template
   }
   makeSubcomment(id, event) {
-    debugger
     event.preventDefault()
     if (_as.user._id) {
       let content = event.target.content.value
