@@ -32,11 +32,18 @@ export default class CommentService {
   }
   getSubcomments(commentId, draw) {
     let subcoms = []
+    debugger
     _subCommentApi.get(commentId)
-      .then(res => subcoms = res.data)
-    draw(subcoms)
+      .then(res => {
+        subcoms = res.data
+        console.log(res)
+        draw(subcoms, commentId)
+      })
   }
   makeSubcomments(commentId, subComment) {
+    console.log(subComment)
+    debugger
     _commentApi.post(commentId + '/subcomment', subComment)
+      .then()
   }
 }
