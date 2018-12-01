@@ -7,28 +7,33 @@ export default class SurveyController {
     _as = auth
     this.getAllSurveys()
   }
+  get currentSurvey() {
+    return _currentSurvey
+  }
   getAllSurveys() {
     _ss.getAllSurveys(drawAllSurveys)
   }
   //create a survey
   createSurvey(event) {
     event.preventDefault();
+    console.log(_as.user)
     let form = event.target
-
     let formData = {
       question: form.question.value,
       answers: [
-        { answer: form.a1.value, count: form.n1.value },
-        { answer: form.a2.value, count: form.n2.value },
-        { answer: form.a3.value, count: form.n3.value },
-        { answer: form.a4.value, count: form.n4.value },
-        { answer: form.a5.value, count: form.n5.value }
+        { answer: form.a1.value },
+        { answer: form.a2.value },
+        { answer: form.a3.value },
+        { answer: form.a4.value },
+        { answer: form.a5.value }
       ],
-      img: form.imgurl.value
+      img: form.imgurl.value,
+      userId: _as.user._id
+
     }
     // --------
-    console.log('Question L:', form.question.length)
-    console.log(formData.answers.forEach(answer => console.log('A Length: ', answer.length)))
+    // console.log('Question L:', form.question.length)
+    // console.log(formData.answers.forEach(answer => console.log('A Length: ', answer.length)))
     // -----------
     _ss.createSurvey(formData, this.getAllSurveys)
   }
@@ -38,7 +43,7 @@ export default class SurveyController {
         <h1>Create A Survey</h1>
       </div>
       <div class="col-md-6">
-        <form onsubmit="">
+        <form onsubmit="app.controllers.surveyController.createSurvey(event)">
           <div class="form-group">
             <label for="question">Survey Question: </label> <input type="text" name="question">
           </div>
@@ -75,10 +80,47 @@ export default class SurveyController {
   `
     document.getElementById('main-frame').innerHTML = template
   }
+  openSurvey(surveyId) {
+    if (_as.user._id) {
+      _ss.getOneSurvey(surveyId, drawSurvey)
+    } else {
+      document.getElementById('main-frame').innerHTML = `<h1>Please Login to Continue</h1>`
+    }
+  }
+  checkAnswer(event) {
+    event.preventDefault()
+    let form = event.target.answer.value
+    let result = _ss.checkAnswer(form, _currentSurvey.answers)
+    this.drawPieChart()
 
+  }
+  drawPieChart() {
+    let chart = new CanvasJS.Chart("main-frame", {
+      animationEnabled: true,
+      title: {
+        text: `${_currentSurvey.question}`
+      },
+      data: [{
+        type: "pie",
+        startAngle: 240,
+        yValueFormatString: "##0.00\"%\"",
+        indexLabel: "{label}",
+        dataPoints: [
+          { y: 20, label: `${_currentSurvey.answers[0].answer}` },
+          { y: 20, label: `${_currentSurvey.answers[1].answer}` },
+          { y: 20, label: `${_currentSurvey.answers[2].answer}` },
+          { y: 20, label: `${_currentSurvey.answers[3].answer}` },
+          { y: 20, label: `${_currentSurvey.answers[4].answer}` }
+        ]
+      }]
+    });
+    chart.render();
+
+  }
 }
 function drawAllSurveys(surveys) {
   let template = `<h2 class="col-12">Choose a survey! </h2>`
+  console.log(surveys)
   surveys.forEach(survey => {
     template += survey.getCard()
   })
@@ -91,3 +133,25 @@ function drawAllSurveys(surveys) {
 
 
 }
+function drawSurvey(survey) {
+  _currentSurvey = survey
+  let template = `
+  <h3>${survey.question}</h3>
+  <img src="${survey.img}">
+  <form onsubmit="app.controllers.surveyController.checkAnswer(event)">
+    <div class="form-group">
+      <label for="answer">Enter an answer</label>
+      <input type="text" class="form-control" name="answer">
+      <input type="submit">
+    </div>
+  </form>
+  `
+  let temp2 = '<ul>'
+  survey.comments.forEach(comment => {
+    temp2 += `<li>${comment.content}</li>`
+  })
+  document.getElementById('main-frame').innerHTML = template
+  document.getElementById('comments-frame').innerHTML = temp2 + '</ul>'
+
+}
+

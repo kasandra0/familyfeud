@@ -12,8 +12,9 @@ router.get('/', (req, res, next) => {
 
 //get one survey and comments
 router.get('/:id', (req, res, next) => {
-  Survey.findOne(req.params.id)
+  Survey.findById(req.params.id)
     .then(survey => {
+      if (!survey) { return next() }
       Comments.find({ surveyId: req.params.id })
         .then(comments => {
           survey.comments = comments
@@ -53,7 +54,8 @@ router.put('/:id', (req, res, next) => {
 
 //create a comment, uses the survey id as the url id parameter
 router.post('/:id/comment', (req, res, next) => {
-  Comments.create({ surveyId: req.params.id }, req.body)
+  req.body.surveyId = req.params.id
+  Comments.create(req.body)
     .then(Comments => res.send(Comments))
     .catch(next)
 })

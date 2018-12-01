@@ -1,3 +1,5 @@
+
+
 .header {
   background-color: rgb(184, 66, 184);
   background-repeat: no-repeat;
@@ -8,7 +10,9 @@
   font-size: 50px;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
-
+#main-frame{
+  height: 400px;
+}
 .page {
   background-color: rgb(252, 252, 160); 
 }

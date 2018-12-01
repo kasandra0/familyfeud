@@ -3,13 +3,14 @@ export default class Survey {
     this.question = data.question
     this.answers = data.answers
     this.userId = data.userId
-    this.imgurl = '//placehold.it/200X200'
+    this.img = data.img
+    this.id = data._id
   }
   getCard() { // finish onclick method
     let template = `
     <div class="col-4">
-      <div class="card" onclick="${}">
-        <img class="card-img-top" src="//placehold.it/200X200">
+      <div class="card" onclick="app.controllers.surveyController.openSurvey('${this.id}')">
+        <img class="card-img-top" src="${this.img}">
         <h5 class="card-title">${this.question}</h5>
       </div>
     </div>
