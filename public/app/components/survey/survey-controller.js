@@ -158,8 +158,8 @@ function drawSurvey(survey) {
   `
   let template2 = '<ul>'
   survey.comments.forEach(comment => {
-    template2 += `<li>${comment.content}</li>
-    <button onclick="">reply</button>`
+    template2 += `<li onclick ="app.controllers.commentsController.getSubcomments('${comment._id}')">${comment.content}</li><span id="reply-${comment._id}"></span>
+    <button onclick="app.controllers.commentsController.drawForm('${comment._id}')">reply</button>`
   })
   template2 += `
         <form onsubmit="app.controllers.surveyController.submitComment(event)">
@@ -174,7 +174,7 @@ function drawSurvey(survey) {
 
 }
 function drawComments(comments) {
-
+  debugger
   let template = `<ul>`
   comments.forEach(comment => {
     template += `<li>${comment.content}</li>

@@ -24,7 +24,7 @@ router.put('/:id/down', (req, res, next) => {
 
 //get subbcoments using the comment id
 router.get('/:id', (req, res, next) => {
-  Subcomment.find({ comId: req.params.id })
+  Subcomment.find({ commentId: req.params.id })
     .then(subcomments => res.send(subcomments))
     .catch(next)
 })

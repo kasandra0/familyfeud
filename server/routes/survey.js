@@ -26,7 +26,7 @@ router.get('/:id', (req, res, next) => {
 
 //get all comments for a survey
 router.get('/:id/comment', (req, res, next) => {
-  Comments.find({})
+  Comments.find({ surveyId: req.params.id })
     .then(comments => res.send(comments))
     .catch(next)
 })

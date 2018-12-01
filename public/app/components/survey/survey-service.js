@@ -73,9 +73,16 @@ export default class SurveyService {
     }
   }
   makeComment(surveyId, comment, callback) {
-    debugger
     _surveyApi.post(surveyId + '/comment', comment)
-      .then(callback)
+      .then(res => {
+        this.getComments(surveyId, callback)
+      })
       .catch(handleError)
+  }
+  getComments(surveyId, callback) {
+    _surveyApi.get(surveyId + "/comment")
+      .then(res => {
+        callback(res.data)
+      }).catch(handleError)
   }
 }

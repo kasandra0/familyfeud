@@ -15,24 +15,42 @@ export default class CommentController {
   getSubcomments(commentId) {
     _cs.getSubcomments(commentId, this.drawSubcomments)
   }
-  drawSubcomments(subcomments) {
+  drawSubcomments(subcomments, commentId) {
     let template = `<ul>`
+    console.log(subcomments)
     subcomments.forEach(com => {
       template += `<li>
       ${com.content}
       </li>`
     });
     template += `</ul>`
-    document.getElementById.innerHTML = template
+    document.getElementById('reply-' + commentId).innerHTML = template
   }
   makeSubcomment(id, event) {
-    event.preventdefault()
-    if (_as.user.uid) {
+    debugger
+    event.preventDefault()
+    if (_as.user._id) {
       let content = event.target.content.value
-      _cs.makeSubcomments(id, content)
+      let subComment = {
+        content: content,
+        userId: _as.user._id
+      }
+      _cs.makeSubcomments(id, subComment)
     }
     else {
       console.error(handleError)
     }
+  }
+  drawForm(commentId) {
+    let form = `
+      <form onsubmit="app.controllers.commentsController.makeSubcomment('${commentId}', event)">
+        <div class="form-group">
+          <input type="text" name="content">
+          <input type="submit" value="Post Comment">
+        </div>
+      </form>
+    `
+
+    document.getElementById('reply-' + commentId).innerHTML = form
   }
 }

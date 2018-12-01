@@ -5,10 +5,10 @@ let name = 'Subcomment'
 
 let schema = new Schema({
   content: { type: String, required: true },
-  upvotes: { type: Number, required: true },
-  downvotes: { type: Number, required: true },
+  upvotes: { type: Number, default: 0 },
+  downvotes: { type: Number, default: 0 },
   commentId: { type: ObjectId, ref: 'commid', required: true },
-  userId: { type: ObjectId, ref: 'uid', required: true }
+  userId: { type: ObjectId, ref: 'uid' }
 })
 
 let model = mongoose.model(name, schema)
