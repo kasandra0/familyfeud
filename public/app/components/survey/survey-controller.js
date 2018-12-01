@@ -124,7 +124,7 @@ export default class SurveyController {
       userId: _as.user._id
     }
     debugger
-    _ss.makeComment(_currentSurvey._id, comment, this.openSurvey)
+    _ss.makeComment(_currentSurvey._id, comment, drawComments)
 
   }
 }
@@ -172,5 +172,14 @@ function drawSurvey(survey) {
   document.getElementById('main-frame').innerHTML = template
   document.getElementById('comments-frame').innerHTML = template2 + '</ul>'
 
+}
+function drawComments(comments) {
+
+  let template = `<ul>`
+  comments.forEach(comment => {
+    template += `<li>${comment.content}</li>
+    <button onclick="">reply</button>`
+  })
+  document.getElementById('comments-frame').innerHTML = template + '</ul>'
 }
 
