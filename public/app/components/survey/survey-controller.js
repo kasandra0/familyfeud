@@ -117,6 +117,16 @@ export default class SurveyController {
     chart.render();
 
   }
+  submitComment(event) {
+    event.preventDefault()
+    let comment = {
+      content: event.target.comment.value,
+      userId: _as.user._id
+    }
+    debugger
+    _ss.makeComment(_currentSurvey._id, comment, this.openSurvey)
+
+  }
 }
 function drawAllSurveys(surveys) {
   let template = `<h2 class="col-12">Choose a survey! </h2>`
@@ -146,12 +156,21 @@ function drawSurvey(survey) {
     </div>
   </form>
   `
-  let temp2 = '<ul>'
+  let template2 = '<ul>'
   survey.comments.forEach(comment => {
-    temp2 += `<li>${comment.content}</li>`
+    template2 += `<li>${comment.content}</li>
+    <button onclick="">reply</button>`
   })
+  template2 += `
+        <form onsubmit="app.controllers.surveyController.submitComment(event)">
+        <div class="form-group">
+          <input type="text" name="comment">
+          <input type="submit" value="Post Comment">
+        </div>
+      </form>
+  `
   document.getElementById('main-frame').innerHTML = template
-  document.getElementById('comments-frame').innerHTML = temp2 + '</ul>'
+  document.getElementById('comments-frame').innerHTML = template2 + '</ul>'
 
 }
 
