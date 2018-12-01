@@ -119,7 +119,7 @@
       background-color:blue;
     }
     75% {
-      background-color: red;
+      background-color: green;
     }
     100% {
       background-color: green
@@ -128,8 +128,7 @@
 
 @keyframes purples {
   0% {
-    background-color:blue;
-  }
+    background-color: purple }
   32% {
     background-color: blue;
   }
@@ -137,10 +136,10 @@
     background-color:pink;
   }
     60% {
-      background-color:yellow;
+      background-color: pink;
     }
     75% {
-      background-color: red;
+      background-color: brown;
     }
     100% {
       background-color: brown
