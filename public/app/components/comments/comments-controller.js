@@ -13,10 +13,17 @@ export default class CommentController {
     _as = auth
   }
   getSubcomments(commentId) {
-    _cs.getSubcomments(commentId)
+    _cs.getSubcomments(commentId, this.drawSubcomments)
   }
-  drawSubcomments() {
-
+  drawSubcomments(subcomments) {
+    let template = `<ul>`
+    subcomments.forEach(com => {
+      template += `<li>
+      ${com.content}
+      </li>`
+    });
+    template += `</ul>`
+    document.getElementById.innerHTML = template
   }
   makeSubcomment(id, event) {
     event.preventdefault()

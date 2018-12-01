@@ -24,6 +24,13 @@ router.get('/:id', (req, res, next) => {
     })
 })
 
+//get all comments for a survey
+router.get('/:id/comment', (req, res, next) => {
+  Comments.find({})
+    .then(comments => res.send(comments))
+    .catch(next)
+})
+
 //delete a survey
 router.delete('/:id', (req, res, next) => {
   Survey.findByIdAndUpdate(req.params.id, 'The Survey No Longer Exists', { new: true })

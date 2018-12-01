@@ -47,7 +47,8 @@
   height:50px
 }
 .boxes {
-  height: 100px;
+  height: 200px;
+  position: absolute;
 }
 @keyframes blues {
   0% {
