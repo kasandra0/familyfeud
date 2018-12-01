@@ -14,38 +14,119 @@
 }
 .blue {
   background-color: blue;
-  animation: pulse 10s infinite;
+  animation: blues 10s infinite;
   height:50px
 }
 .red {
   background-color:red;
-  animation: pulse 10s infinite;
+  animation: reds 10s infinite;
   height:50px
 }
 .yellow {
   background-color:yellow;
-  animation: pulse 10s infinite;
+  animation: yellows 10s infinite;
   height:50px
 }
 .green {
   background-color:green;
-  animation: pulse 10s infinite;
+  animation: greens 10s infinite;
   height:50px
 }
 .purple {
   background-color:purple;
-  animation: pulse 10s infinite;
+  animation: purples 10s infinite;
   height:50px
 }
 .pink {
   background-color:pink;
-  animation:pulse 10s infinite;
+  animation:pinks 10s infinite;
   height:50px
 }
 .boxes {
   height: 100px;
 }
-@keyframes blue {
+@keyframes blues {
+  0% {
+    background-color:blue;
+  }
+  32% {
+    background-color: blue;
+  }
+  33% {
+    background-color:pink;
+  }
+    60% {
+      background-color: red;
+    }
+    75% {
+      background-color: red;
+    }
+    100% {
+      background-color: blue;
+    }
+  }
+  @keyframes reds {
+  0% {
+    background-color:red;
+  }
+  32% {
+    background-color:red;
+  }
+  33% {
+    background-color:pink;
+  }
+    60% {
+      background-color: pink;
+    }
+    75% {
+      background-color:blue;
+    }
+    100% {
+      background-color: green
+    }
+  }
+  @keyframes yellows {
+  0% {
+    background-color:yellow;
+  }
+  32% {
+    background-color:yellow;
+  }
+  33% {
+    background-color:pink;
+  }
+    60% {
+      background-color:blue;
+    }
+    75% {
+      background-color: red;
+    }
+    100% {
+      background-color: yellow;
+    }
+  }
+  @keyframes greens {
+  0% {
+    background-color:green;
+  }
+  32% {
+    background-color:green;
+  }
+  33% {
+    background-color:pink;
+  }
+    60% {
+      background-color:blue;
+    }
+    75% {
+      background-color: red;
+    }
+    100% {
+      background-color: green
+    }
+  }
+
+@keyframes purples {
   0% {
     background-color:blue;
   }
@@ -62,6 +143,28 @@
       background-color: red;
     }
     100% {
+      background-color: brown
+    }
+  }
+@keyframes pinks {
+  0% {
+    background-color:pink;
+  }
+  32% {
+    background-color: pink;
+  }
+  33% {
+    background-color:green;
+  }
+    60% {
+      background-color:yellow;
+    }
+    75% {
+      background-color: pink;
+    }
+    100% {
       background-color: green
     }
   }
+
+
