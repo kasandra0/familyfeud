@@ -72,7 +72,10 @@ export default class SurveyService {
       return false
     }
   }
-  makeComments(surveyId) {
-    _surveyApi.post(surveyId + '/comment')
+  makeComment(surveyId, comment, callback) {
+    debugger
+    _surveyApi.post(surveyId + '/comment', comment)
+      .then(callback())
+      .catch(handleError)
   }
 }
