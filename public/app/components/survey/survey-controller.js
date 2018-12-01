@@ -174,7 +174,7 @@ function drawSurvey(survey) {
 
 }
 function drawComments(comments) {
-
+  debugger
   let template = `<ul>`
   comments.forEach(comment => {
     template += `<li>${comment.content}</li>
