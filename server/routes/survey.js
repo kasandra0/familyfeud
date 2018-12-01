@@ -34,7 +34,6 @@ router.delete('/:id', (req, res, next) => {
 router.post('/', (req, res, next) => {
   Survey.create(req.body)
     .then(survey => {
-      survey.addAnswers(req.body.answers)
       survey.save(err => {
         if (err) {
           return next(err)

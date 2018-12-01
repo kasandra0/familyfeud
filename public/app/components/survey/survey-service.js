@@ -1,6 +1,6 @@
 // @ts-ignore
 let _surveyApi = axios.create({
-  baseURL: '/api/surveys',
+  baseURL: '/api/survey',
   withCredentials: true
 })
 function handleError(error) {
